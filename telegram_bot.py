@@ -141,7 +141,7 @@ async def history(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         await update.message.reply_text("📜 No signals in history yet.")
         return
 
-    await update.message.reply_text("*--- Last 5 Signals ---", parse_mode='MarkdownV2')
+    await update.message.reply_text("*--- Last 5 Signals ---*", parse_mode='MarkdownV2')
     for signal_data in signal_history[-5:]:
         action_emoji = get_action_emoji(signal_data['action'])
         message = (
@@ -211,9 +211,9 @@ async def monitor_pending_signals(context: ContextTypes.DEFAULT_TYPE):
                     f"✅ *TRADE CONFIRMED: {escape_markdown(symbol, version=2)}*\n\n"
                     f"*Action:* `{re_evaluated_signal['action']}`\n"
                     f"*Entry:* ${escape_markdown(f'{re_evaluated_signal["entry"]:.2f}', version=2)}\n"
-                    f"🎯 *Take Profit:* ${escape_markdown(f'{re_evaluated_signal['take_profit']:.2f}', version=2)}\n"
-                    f"🛡️ *Stop Loss:* ${escape_markdown(f'{re_evaluated_signal['stop_loss']:.2f}', version=2)}\n"
-                    f"💪 *Confidence:* `{escape_markdown(f'{re_evaluated_signal['confidence']:.2f}', version=2)}`\n\n"
+                    f"🎯 *Take Profit:* ${escape_markdown(f'{re_evaluated_signal["take_profit"]:.2f}', version=2)}\n"
+                    f"🛡️ *Stop Loss:* ${escape_markdown(f'{re_evaluated_signal["stop_loss"]:.2f}', version=2)}\n"
+                    f"💪 *Confidence:* `{escape_markdown(f'{re_evaluated_signal["confidence"]:.2f}', version=2)}`\n\n"
                     f"*Reason:* {escape_markdown(re_evaluated_signal['reason'], version=2)}"
                 )
                 await context.bot.send_message(chat_id=chat_id, text=message, parse_mode='MarkdownV2')
