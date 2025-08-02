@@ -105,13 +105,13 @@ async def generate_signal(source, context, symbol):
         keyboard = [] # Start with an empty keyboard
         if signal_data['signal_type'] == 'PENDING':
             title = f"⏳ *Pending Signal - {escape_markdown(signal_data['symbol'], version=2)}*"
-            entry_line = f"*Entry Target:* ${escape_markdown(f'{signal_data['entry']:.2f}', version=2)} (Wait for price)"
+            entry_line = f"*Entry Target:* ${escape_markdown(f'{signal_data["entry"]:.2f}', version=2)} (Wait for price)"
             # Add the monitor button for pending signals
             monitor_callback = f"monitor_{signal_data['symbol']}_{signal_data['entry']}_{signal_data['action']}"
             keyboard.append([InlineKeyboardButton("🔔 Monitor this Trade", callback_data=monitor_callback)])
         else: # MARKET
             title = f"{action_emoji} *{escape_markdown(signal_data['symbol'], version=2)} Signal*"
-            entry_line = f"*Entry:* ${escape_markdown(f'{signal_data['entry']:.2f}', version=2)}"
+            entry_line = f"*Entry:* ${escape_markdown(f'{signal_data["entry"]:.2f}', version=2)}"
 
         confidence_note = ""
         if 'confidence_note' in signal_data:
@@ -146,7 +146,7 @@ async def history(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         action_emoji = get_action_emoji(signal_data['action'])
         message = (
             f"{action_emoji} *{escape_markdown(signal_data.get('symbol', 'N/A'), version=2)}*\n"
-            f"`{signal_data['action']}` | Entry: ${escape_markdown(f'{signal_data['entry']:.2f}', version=2)}\n"
+            f"`{signal_data['action']}` | Entry: ${escape_markdown(f'{signal_data["entry"]:.2f}', version=2)}\n"
             f"TP: ${escape_markdown(f'{signal_data['take_profit']:.2f}', version=2)} | SL: ${escape_markdown(f'{signal_data['stop_loss']:.2f}', version=2)}\n"
             f"Confidence: `{escape_markdown(f'{signal_data['confidence']:.2f}', version=2)}`"
         )
@@ -165,7 +165,7 @@ async def proactive_signals(context: ContextTypes.DEFAULT_TYPE):
             message = (
                 f"🔥 *High-Confidence Alert: {escape_markdown(symbol, version=2)}*\n\n"
                 f"{action_emoji} *Action:* `{signal_data['action']}`\n"
-                f"*Entry:* ${escape_markdown(f'{signal_data['entry']:.2f}', version=2)}\n"
+                f"*Entry:* ${escape_markdown(f'{signal_data["entry"]:.2f}', version=2)}\n"
                 f"🎯 *TP:* ${escape_markdown(f'{signal_data['take_profit']:.2f}', version=2)} | 🛡️ *SL:* ${escape_markdown(f'{signal_data['stop_loss']:.2f}', version=2)}\n"
                 f"💪 *Confidence:* `{escape_markdown(f'{signal_data['confidence']:.2f}', version=2)}`\n"
                 f"🧠 *Reason:* {escape_markdown(signal_data['reason'], version=2)}"
