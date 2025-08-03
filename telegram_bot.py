@@ -239,14 +239,14 @@ def main() -> None:
         logger.error("TELEGRAM_TOKEN not found in .env file")
         return
 
-    application = Application.builder().token(TELEGRAM_TOKEN).build()
+    job_queue = JobQueue()
+    application = Application.builder().token(TELEGRAM_TOKEN).job_queue(job_queue).build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler('signal', signal_command))
     application.add_handler(CommandHandler("history", history))
     application.add_handler(CallbackQueryHandler(button))
 
-    job_queue = application.job_queue
     job_queue.run_repeating(proactive_signals, interval=900, first=10)
     job_queue.run_repeating(monitor_pending_signals, interval=60) # Monitor every 60 seconds
 
