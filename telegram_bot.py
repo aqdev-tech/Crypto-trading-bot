@@ -2,7 +2,7 @@ import asyncio
 import logging
 import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, ContextTypes, CallbackQueryHandler
+from telegram.ext import Application, CommandHandler, ContextTypes, CallbackQueryHandler, JobQueue
 from telegram.helpers import escape_markdown
 from dotenv import load_dotenv
 
