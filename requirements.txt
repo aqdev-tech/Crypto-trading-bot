@@ -1,5 +1,4 @@
-
-python-telegram-bot==20.8
-ccxt
-python-dotenv
-groq
+ccxt==4.4.98
+python-dotenv==1.1.1
+groq==0.30.0
+python-telegram-bot==21.0.1

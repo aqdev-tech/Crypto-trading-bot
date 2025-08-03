@@ -250,7 +250,7 @@ def main() -> None:
     job_queue.run_repeating(proactive_signals, interval=900, first=10)
     job_queue.run_repeating(monitor_pending_signals, interval=60) # Monitor every 60 seconds
 
-    application.run_polling()
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == "__main__":
     main()
