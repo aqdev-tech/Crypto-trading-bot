@@ -1,4 +1,4 @@
 ccxt==4.4.98
 python-dotenv==1.1.1
 groq==0.30.0
-python-telegram-bot[job-queue]==21.0.1
+python-telegram-bot[job-queue]==20.7
